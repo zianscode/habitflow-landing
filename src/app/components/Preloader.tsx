@@ -72,7 +72,7 @@ export default function Preloader() {
             sizes="80px"
             style={{ objectFit: "contain" }}
             className="pulse-animation"
-            priority
+            preload
           />
         </div>
         <h2 style={{ fontWeight: 600, fontSize: "1.5rem", letterSpacing: "-0.02em" }}>HabitFlow</h2>

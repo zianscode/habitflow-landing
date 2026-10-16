@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const companies = [
   { name: "Google", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg" },
@@ -16,17 +17,30 @@ export default function TrustBar() {
   const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const marquee = marqueeRef.current;
-    if (marquee) {
-      const singleSetWidth = marquee.scrollWidth / 4; 
+    const ctx = gsap.context(() => {
+      const marquee = marqueeRef.current;
+      if (marquee) {
+        const singleSetWidth = marquee.scrollWidth / 4; 
       
-      gsap.to(marquee, {
-        x: -singleSetWidth,
-        duration: 25, 
-        ease: "none",
-        repeat: -1,
-      });
-    }
+        const loop = gsap.to(marquee, {
+          x: -singleSetWidth,
+          duration: 25, 
+          ease: "none",
+          repeat: -1,
+        });
+
+        // Speed the marquee up while the page is being scrolled, then ease back.
+        ScrollTrigger.create({
+          onUpdate: (self) => {
+            const boost = Math.min(Math.abs(self.getVelocity()) / 300, 5);
+            gsap.to(loop, { timeScale: 1 + boost, duration: 0.2, overwrite: true });
+            gsap.to(loop, { timeScale: 1, duration: 1, delay: 0.2, ease: "power2.out" });
+          },
+        });
+      }
+    }, marqueeRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -41,7 +55,7 @@ export default function TrustBar() {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 24px", textAlign: "center", marginBottom: "clamp(20px, 4vw, 40px)" }}>
         <span style={{ fontSize: "clamp(0.7rem, 2vw, 0.8rem)", fontWeight: 600, color: "#94a3b8", textTransform: "uppercase", letterSpacing: "0.15em" }}>
-          Trusted by industry leaders worldwide
+          Used by people at
         </span>
       </div>
 

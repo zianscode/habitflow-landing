@@ -1,11 +1,11 @@
 import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import ScrollReveal from "./components/ScrollReveal";
 
 const TrustBar = dynamic(() => import("./components/TrustBar"));
 const Features = dynamic(() => import("./components/Features"));
 const ProductPreview = dynamic(() => import("./components/ProductPreview"));
+const ScrollText = dynamic(() => import("./components/ScrollText"));
 const WhyUs = dynamic(() => import("./components/WhyUs"));
 const HowItWorks = dynamic(() => import("./components/HowItWorks"));
 const Testimonials = dynamic(() => import("./components/Testimonials"));
@@ -19,49 +19,18 @@ export default function LandingPage() {
   return (
     <main>
       <Navbar />
-      
       <Hero />
-      
-      <ScrollReveal>
-        <TrustBar />
-      </ScrollReveal>
-
-      <ScrollReveal parallax={true}>
-        <Features />
-      </ScrollReveal>
-
-      <ScrollReveal parallax={true}>
-        <ProductPreview />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <WhyUs />
-      </ScrollReveal>
-
-      <ScrollReveal parallax={true}>
-        <HowItWorks />
-      </ScrollReveal>
-
-      <ScrollReveal parallax={true}>
-        <Pricing />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <Testimonials />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <Integrations />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <FAQ />
-      </ScrollReveal>
-
-      <ScrollReveal>
-        <FinalCTA />
-      </ScrollReveal>
-
+      <TrustBar />
+      <Features />
+      <ProductPreview />
+      <ScrollText />
+      <WhyUs />
+      <HowItWorks />
+      <Pricing />
+      <Testimonials />
+      <Integrations />
+      <FAQ />
+      <FinalCTA />
       <Footer />
     </main>
   );

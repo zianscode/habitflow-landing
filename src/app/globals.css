@@ -3,6 +3,17 @@
   --background-rgb: 255, 255, 255;
   --font-poppins: "Poppins", sans-serif;
   --grid-color: rgba(226, 232, 240, 0.8);
+
+  --ink: #0f172a;
+  --ink-2: #334155;
+  --muted: #64748b;
+  --subtle: #94a3b8;
+  --line: #e2e8f0;
+  --surface-2: #f8fafc;
+  --brand: #1b1cc2;
+  --brand-hover: #15169c;
+  --accent: #fd643b;
+  --night: #0c0d2b;
 }
 
 * {
@@ -70,7 +81,6 @@ body {
 }
 
 html {
-  scroll-behavior: smooth;
   background: white !important;
 }
 
@@ -83,24 +93,179 @@ a {
   text-decoration: none;
 }
 
-.nav-link:hover {
-  color: #1b1cc2 !important;
+
+/* ---------- Type ---------- */
+
+.section-title {
+  font-family: var(--font-brand);
+  font-size: clamp(2.25rem, 4.6vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.04;
+  letter-spacing: -0.035em;
+  color: var(--ink);
+  text-wrap: balance;
+  margin: 0 0 20px;
+}
+.section-title .muted {
+  color: var(--subtle);
+}
+.section-title--sm {
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+}
+.section-title--light {
+  color: #ffffff;
+}
+.section-title--light .muted {
+  color: rgba(255, 255, 255, 0.55);
 }
 
-@media (max-width: 992px) {
-  .nav-wrapper {
-    padding: 15px !important;
-  }
-  .main-nav {
-    width: 100% !important;
-    border-radius: 100px !important;
-    padding: 10px 15px !important;
-  }
-  .nav-desktop-links,
-  .nav-action {
-    display: none !important;
-  }
-  .mobile-toggle {
-    display: block !important;
-  }
+.section-lead {
+  font-size: 1.075rem;
+  line-height: 1.65;
+  color: var(--muted);
+  font-weight: 400;
+  max-width: 520px;
+  text-wrap: pretty;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  height: 48px;
+  padding: 0 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 3px;
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn-sm {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 0.875rem;
+}
+.btn-lg {
+  height: 56px;
+  padding: 0 28px;
+  font-size: 1rem;
+}
+.btn-block {
+  width: 100%;
+}
+.btn-arrow {
+  transition: transform 0.2s ease;
+}
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+.btn-primary {
+  background: var(--brand);
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 1px 2px rgba(15, 23, 42, 0.12), 0 8px 20px -8px rgba(27, 28, 194, 0.6);
+}
+.btn-primary:hover {
+  background: var(--brand-hover);
+}
+
+.btn-secondary {
+  background: #ffffff;
+  color: var(--ink);
+  border-color: var(--line);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+.btn-secondary:hover {
+  background: var(--surface-2);
+  border-color: #cbd5e1;
+}
+
+.btn-light {
+  background: #ffffff;
+  color: var(--brand);
+}
+.btn-light:hover {
+  background: #eef0ff;
+}
+
+.btn-outline-light {
+  background: transparent;
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.28);
+}
+.btn-outline-light:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+.btn-outline-light:focus-visible,
+.btn-light:focus-visible {
+  outline-color: #ffffff;
+}
+
+/* ---------- Pricing ---------- */
+
+.billing-toggle {
+  display: inline-flex;
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #ffffff;
+}
+.billing-toggle button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 40px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-family: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+.billing-toggle button:hover {
+  color: var(--ink);
+}
+.billing-toggle button[aria-pressed="true"] {
+  background: var(--ink);
+  color: #ffffff;
+}
+.billing-toggle button:focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+}
+.billing-save {
+  padding: 3px 7px;
+  border-radius: 999px;
+  background: rgba(253, 100, 59, 0.14);
+  color: var(--accent);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+.plan-badge {
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
 }

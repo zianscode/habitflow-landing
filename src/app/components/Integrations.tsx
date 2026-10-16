@@ -2,6 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
+import SplitHeading from "./SplitHeading";
 
 const initialIntegrations = [
   { name: "Google Calendar", logo: "https://cdn.worldvectorlogo.com/logos/google-calendar-6.svg" },
@@ -24,23 +25,27 @@ export default function Integrations() {
   };
 
   useEffect(() => {
-    const items = itemsRef.current?.children;
-    if (items) {
-      gsap.fromTo(items, 
-        { y: 20, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 85%",
+    const ctx = gsap.context(() => {
+      const items = itemsRef.current?.children;
+      if (items) {
+        gsap.fromTo(items, 
+          { y: 20, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 85%",
+            }
           }
-        }
-      );
-    }
+        );
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
   }, [integrations]);
 
   return (
@@ -53,11 +58,11 @@ export default function Integrations() {
       }}
     >
       <div style={{ maxWidth: 1100, margin: "0 auto", textAlign: "center" }}>
-        <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.02em" }}>
-          Connected to Your Ecosystem
-        </h2>
-        <p style={{ fontSize: "1.05rem", color: "#64748b", maxWidth: 600, margin: "0 auto 80px", fontWeight: 500 }}>
-          Seamlessly synchronize your habit data with the applications you already rely on.
+        <SplitHeading className="section-title section-title--sm">
+          Works with the apps <span className="muted">you already use</span>
+        </SplitHeading>
+        <p className="section-lead" style={{ margin: "0 auto 72px" }}>
+          Sync check-ins with your calendar, health data, and notes. No copy-pasting.
         </p>
 
         <div

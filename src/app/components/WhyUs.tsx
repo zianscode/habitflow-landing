@@ -1,20 +1,40 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import SplitHeading from "./SplitHeading";
 
 export default function WhyUs() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.from(".stat-card", {
-      y: 40,
-      opacity: 0,
-      stagger: 0.1,
-      duration: 0.8,
-      ease: "power3.out",
-      scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
-    });
+    const ctx = gsap.context(() => {
+      gsap.from(".stat-card", {
+        y: 40,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: { trigger: sectionRef.current, start: "top 75%" }
+      });
+
+      gsap.utils.toArray<HTMLElement>(".stat-value").forEach((el) => {
+        const target = parseFloat(el.dataset.value ?? "0");
+        const decimals = Number(el.dataset.decimals ?? 0);
+        const counter = { v: 0 };
+        gsap.to(counter, {
+          v: target,
+          duration: 1.6,
+          ease: "power2.out",
+          scrollTrigger: { trigger: el, start: "top 85%", once: true },
+          onUpdate: () => {
+            el.textContent = counter.v.toFixed(decimals);
+          },
+        });
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
   }, []);
 
   const cardStyle: React.CSSProperties = {
@@ -41,9 +61,9 @@ export default function WhyUs() {
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div style={{ marginBottom: "clamp(60px, 10vw, 100px)" }}>
-          <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.2rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.04em", lineHeight: 1.1 }}>
-            Unrivaled Metrics <br /><span style={{ color: "#1b1cc2" }}>for Unstoppable Growth.</span>
-          </h2>
+          <SplitHeading>
+            Small steps <br /><span className="muted">add up.</span>
+          </SplitHeading>
         </div>
 
         <div 
@@ -59,8 +79,8 @@ export default function WhyUs() {
               border: "1px solid #f1f5f9"
             }}
           >
-            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#fd643b" }}>90%</div>
-            <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Consistency</div>
+            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#fd643b" }}><span className="stat-value" data-value="90">90</span>%</div>
+            <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Still checking in after 30 days</div>
           </div>
 
           <div
@@ -72,8 +92,8 @@ export default function WhyUs() {
               color: "white"
             }}
           >
-            <div style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "white" }}>3.5×</div>
-            <div style={{ fontSize: "0.85rem", color: "#94a3b8", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Productivity Boost</div>
+            <div style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "white" }}><span className="stat-value" data-value="3.5" data-decimals="1">3.5</span>M</div>
+            <div style={{ fontSize: "0.85rem", color: "#94a3b8", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Check-ins logged</div>
           </div>
 
           <div
@@ -85,8 +105,8 @@ export default function WhyUs() {
               border: "1px solid #f1f5f9"
             }}
           >
-            <div style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#1b1cc2" }}>10K+</div>
-            <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Global Achievers</div>
+            <div style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#1b1cc2" }}><span className="stat-value" data-value="10">10</span>K+</div>
+            <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>People tracking habits</div>
           </div>
 
           <div
@@ -98,8 +118,8 @@ export default function WhyUs() {
               border: "1px solid #f1f5f9"
             }}
           >
-            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#fd643b" }}>4.9★</div>
-            <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>User Rating</div>
+            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#fd643b" }}><span className="stat-value" data-value="4.9" data-decimals="1">4.9</span>★</div>
+            <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Average app rating</div>
           </div>
         </div>
       </div>

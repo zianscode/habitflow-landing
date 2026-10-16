@@ -22,7 +22,7 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   title: "HabitFlow",
   description:
-    "Track your daily routines, stay consistent, and achieve your goals with ease. HabitFlow is the premium habit tracking dashboard for serious goal-setters.",
+    "A simple habit tracker. Check in each day, keep your streaks, and see which habits actually stick.",
   icons: {
     icon: logoIcon.src,
   },
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "HabitFlow",
     description:
-      "Track your daily routines, stay consistent, and achieve your goals with ease.",
+      "A simple habit tracker. Check in each day and see which habits actually stick.",
     type: "website",
   },
 };

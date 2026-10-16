@@ -1,12 +1,13 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
+import SplitHeading from "./SplitHeading";
 
 const faqs = [
-  { question: "Is HabitFlow really free to start?", answer: "Yes! Our Free plan includes up to 5 habits, streak tracking, and daily reminders — completely free, forever. No credit card required to sign up." },
-  { question: "Can I track any type of habit?", answer: "Absolutely. HabitFlow supports daily, weekly, and custom frequency habits. You can track anything from fitness routines to reading, hydration, and more." },
-  { question: "How does the streak system work?", answer: "A streak counts consecutive days you complete a habit. Miss a day and the streak resets. We also offer a 'streak shield' feature on Pro plans." },
-  { question: "Is my data private and secure?", answer: "Your data is encrypted end-to-end and stored securely. We never sell your data to third parties. You can export your data anytime." },
+  { question: "Is HabitFlow really free to start?", answer: "Yes. The Free plan covers up to 5 habits with streaks and reminders, and it stays free. You don't need a card to sign up." },
+  { question: "Can I track any type of habit?", answer: "Pretty much. Habits can be daily, weekly, or on a custom schedule, so workouts, reading, drinking water, or anything else works." },
+  { question: "How does the streak system work?", answer: "A streak counts the days in a row you complete a habit. Miss a day and it resets. On Pro you get a streak shield that covers one missed day a month." },
+  { question: "Is my data private and secure?", answer: "Your data is encrypted in transit and at rest, and we don't sell it. You can export or delete everything from your settings at any time." },
 ];
 
 export default function FAQ() {
@@ -15,23 +16,27 @@ export default function FAQ() {
   const itemsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const items = itemsRef.current?.children;
-    if (items) {
-      gsap.fromTo(items, 
-        { y: 15, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          stagger: 0.1,
-          duration: 0.6,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 85%",
+    const ctx = gsap.context(() => {
+      const items = itemsRef.current?.children;
+      if (items) {
+        gsap.fromTo(items, 
+          { y: 15, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.1,
+            duration: 0.6,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: containerRef.current,
+              start: "top 85%",
+            }
           }
-        }
-      );
-    }
+        );
+      }
+    }, containerRef);
+
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -45,9 +50,9 @@ export default function FAQ() {
     >
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
-          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.03em" }}>
-            Commonly Asked <span style={{ color: "#1b1cc2" }}>Questions</span>
-          </h2>
+          <SplitHeading className="section-title section-title--sm">
+            Questions you <span className="muted">might have</span>
+          </SplitHeading>
         </div>
 
         <div ref={itemsRef} style={{ display: "flex", flexDirection: "column", gap: 12 }}>

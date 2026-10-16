@@ -34,6 +34,7 @@ export default function Magnetic({ children }: { children: React.ReactNode }) {
       if (element) {
         element.removeEventListener("mousemove", handleMouseMove);
         element.removeEventListener("mouseleave", handleMouseLeave);
+        gsap.killTweensOf(element);
       }
     };
   }, []);

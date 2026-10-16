@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import SplitHeading from "./SplitHeading";
 
 export default function ProductPreview() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -8,31 +9,37 @@ export default function ProductPreview() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.fromTo(contentRef.current, 
-      { x: -50, opacity: 0 },
-      {
-        x: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power2.out",
+    const ctx = gsap.context(() => {
+      gsap.fromTo(".pp-fade",
+        { y: 30, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.9,
+          stagger: 0.12,
+          ease: "power2.out",
+          scrollTrigger: {
+            trigger: contentRef.current,
+            start: "top 75%",
+          }
+        }
+      );
+
+      gsap.fromTo(mockupRef.current, { y: 60, scale: 0.9, rotation: 2 }, {
+        y: -60,
+        scale: 1,
+        rotation: -2,
+        ease: "none",
         scrollTrigger: {
           trigger: sectionRef.current,
-          start: "top 75%",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: 1
         }
-      }
-    );
+      });
+    }, sectionRef);
 
-    gsap.to(mockupRef.current, {
-      y: -100, 
-      rotation: -2,
-      ease: "none",
-      scrollTrigger: {
-        trigger: sectionRef.current,
-        start: "top bottom",
-        end: "bottom top",
-        scrub: 1
-      }
-    });
+    return () => ctx.revert();
   }, []);
 
   return (
@@ -56,18 +63,18 @@ export default function ProductPreview() {
         }}
       >
         <div ref={contentRef}>
-          <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.03em" }}>
-            Precision Analytics for <br /><span style={{ color: "#1b1cc2" }}>Serious Growth</span>
-          </h2>
-          <p style={{ fontSize: "1.1rem", color: "#64748b", lineHeight: 1.6, marginBottom: 40, fontWeight: 500 }}>
-            Our dashboard provides an unrivaled level of detail into your behavioral patterns.
+          <SplitHeading>
+            Your week, <br /><span className="muted">at a glance.</span>
+          </SplitHeading>
+          <p className="pp-fade section-lead" style={{ marginBottom: 40 }}>
+            One screen shows today&apos;s list, your current streaks, and the last twelve weeks of check-ins.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
             {[
-              { title: "Velocity Tracking", desc: "Measure the speed of your habit formation over time." },
-              { title: "Behavioral Heatmaps", desc: "Visualize when your discipline is strongest." },
+              { title: "Heatmap", desc: "Spot the days you usually skip, so you can plan around them." },
+              { title: "Trends", desc: "See whether a habit is getting easier or slowly slipping." },
             ].map(item => (
-              <div key={item.title}>
+              <div key={item.title} className="pp-fade">
                 <h4 style={{ fontSize: "1.1rem", fontWeight: 600, color: "#0f172a", marginBottom: 8 }}>{item.title}</h4>
                 <p style={{ color: "#64748b", fontWeight: 500, fontSize: "0.95rem" }}>{item.desc}</p>
               </div>

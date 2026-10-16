@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import SplitHeading from "./SplitHeading";
 
 const DynamicIllustration = ({ 
   type, 
@@ -106,15 +107,27 @@ const DynamicIllustration = ({
   return null;
 };
 
+const features = [
+  { type: "momentum", color: "#1b1cc2", title: "Streaks", desc: "See how many days in a row you've kept a habit. Miss one and you'll know right away." },
+  { type: "tracking", color: "#fd643b", title: "Daily check-in", desc: "Tick off today's habits in a few seconds. One tap per habit, then get on with your day." },
+  { type: "analytics", color: "#1b1cc2", title: "Progress charts", desc: "Weekly and monthly views that show which habits hold up and which ones fade." },
+  { type: "objectives", color: "#fd643b", title: "Goals", desc: "Group habits under something bigger, like running a 10K or reading 20 books this year." },
+  { type: "alerts", color: "#1b1cc2", title: "Reminders", desc: "A nudge at the time you pick. Snooze it, or turn it off when you no longer need it." },
+  { type: "global", color: "#fd643b", title: "Shared challenges", desc: "Invite a friend to the same habit and keep each other honest." },
+];
+
 export default function Features() {
-  const gridRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      const cards = gridRef.current?.children;
-      if (!cards) return;
+    const section = sectionRef.current;
+    const track = trackRef.current;
+    if (!section || !track) return;
 
-      Array.from(cards).forEach((card) => {
+    const ctx = gsap.context(() => {
+      Array.from(track.children).forEach((card) => {
         const cardEl = card as HTMLElement;
         const vortex = cardEl.querySelectorAll(".vortex-bar");
         const pulse = cardEl.querySelectorAll(".pulse-bar");
@@ -129,11 +142,41 @@ export default function Features() {
         if (fills.length) gsap.to(fills, { height: "90%", stagger: 0.3, repeat: -1, yoyo: true, duration: 1.5, ease: "sine.inOut" });
         if (radar) gsap.to(radar, { rotate: 360, repeat: -1, duration: 2, ease: "none" });
         if (line) gsap.to(line, { strokeDashoffset: 100, repeat: -1, duration: 2, ease: "none" });
-
-        gsap.fromTo(cardEl, { y: 30, opacity: 0 }, { y: 0, opacity: 1, scrollTrigger: { trigger: cardEl, start: "top 90%" } });
       });
-    }, gridRef);
-    return () => ctx.revert();
+    }, section);
+
+    const mm = gsap.matchMedia();
+
+    // Desktop: pin the section and move the cards sideways while scrolling down.
+    mm.add("(min-width: 993px) and (prefers-reduced-motion: no-preference)", () => {
+      const distance = () => track.offsetLeft + track.scrollWidth - window.innerWidth;
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          pin: true,
+          start: "top top",
+          end: () => "+=" + distance(),
+          scrub: 1,
+          invalidateOnRefresh: true,
+        },
+      });
+
+      tl.to(track, { x: () => -distance(), ease: "none" }, 0)
+        .fromTo(progressRef.current, { scaleX: 0 }, { scaleX: 1, ease: "none" }, 0);
+    });
+
+    // Mobile / reduced motion: plain fade-up per card.
+    mm.add("(max-width: 992px), (prefers-reduced-motion: reduce)", () => {
+      gsap.utils.toArray<HTMLElement>(".f-card", section).forEach((card) => {
+        gsap.fromTo(card, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, ease: "power2.out", scrollTrigger: { trigger: card, start: "top 90%" } });
+      });
+    });
+
+    return () => {
+      mm.revert();
+      ctx.revert();
+    };
   }, []);
 
   const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>, color: string) => {
@@ -145,136 +188,140 @@ export default function Features() {
     gsap.to(e.currentTarget, { y: 0, borderColor: "#f1f5f9", boxShadow: "0 10px 30px rgba(0,0,0,0.02)", duration: 0.4 });
   };
 
-  const cardStyle: React.CSSProperties = {
-    background: "#ffffff",
-    padding: "40px",
-    borderRadius: "40px",
-    border: "1px solid #f1f5f9",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "space-between",
-    cursor: "pointer",
-    transition: "all 0.4s ease",
-    position: "relative",
-    overflow: "hidden"
-  };
-
   return (
-    <section id="features" style={{ padding: "160px 24px", background: "#ffffff" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 600, color: "#0f172a", marginBottom: 80, letterSpacing: "-0.04em" }}>
-          Mastery Through <span style={{ color: "#1b1cc2" }}>Precision.</span>
-        </h2>
+    <section id="features" ref={sectionRef} className="features-section">
+      <div className="features-head">
+        <div>
+          <SplitHeading style={{ marginBottom: 0 }}>
+            The basics, <span className="muted">done well.</span>
+          </SplitHeading>
+        </div>
+        <p className="features-intro section-lead">
+          Six tools that cover how most people actually build a habit. Keep scrolling to see each one.
+        </p>
+      </div>
 
-        <div ref={gridRef} className="features-grid">
-          
-          <div 
-            className="f-card f-card-1"
-            style={{ ...cardStyle, gridArea: "span 1 / span 2" }} 
-            onMouseEnter={(e) => handleMouseEnter(e, "#1b1cc2")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <DynamicIllustration type="momentum" color="#1b1cc2" height="300px" />
-            <div>
-              <h3 style={{ fontSize: "2rem", fontWeight: 600, color: "#0f172a", marginBottom: 16 }}>Elite Momentum Engine</h3>
-              <p style={{ fontSize: "1.1rem", color: "#64748b", lineHeight: 1.7 }}>Forge unbreakable streaks with our precision-engineered momentum engine.</p>
+      <div className="features-viewport">
+        <div ref={trackRef} className="features-track">
+          {features.map((f, i) => (
+            <div
+              key={f.title}
+              className="f-card"
+              onMouseEnter={(e) => handleMouseEnter(e, f.color)}
+              onMouseLeave={handleMouseLeave}
+            >
+              <DynamicIllustration type={f.type} color={f.color} height="clamp(160px, 30vh, 300px)" />
+              <div>
+                <span style={{ display: "block", fontSize: "0.8rem", fontWeight: 600, color: "#94a3b8", marginBottom: 12 }}>
+                  {String(i + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}
+                </span>
+                <h3 style={{ fontSize: "1.6rem", fontWeight: 600, color: "#0f172a", marginBottom: 12, letterSpacing: "-0.02em" }}>{f.title}</h3>
+                <p style={{ fontSize: "1rem", color: "#64748b", lineHeight: 1.6 }}>{f.desc}</p>
+              </div>
             </div>
-          </div>
-
-          <div 
-            className="f-card f-card-2"
-            style={{ ...cardStyle, gridArea: "span 1 / span 1" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#fd643b")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <DynamicIllustration type="tracking" color="#fd643b" height="300px" />
-            <div>
-              <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Radar Precision</h3>
-              <p style={{ color: "#64748b" }}>High-fidelity monitoring for every habit.</p>
-            </div>
-          </div>
-
-          <div 
-            className="f-card f-card-3"
-            style={{ ...cardStyle, gridArea: "span 1 / span 1" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#1b1cc2")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <DynamicIllustration type="analytics" color="#1b1cc2" height="160px" />
-            <div>
-              <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Peak Analytics</h3>
-              <p style={{ color: "#64748b" }}>Visualize patterns and optimize your path.</p>
-            </div>
-          </div>
-
-          <div 
-            className="f-card f-card-4"
-            style={{ ...cardStyle, gridArea: "span 1 / span 2" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#fd643b")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <DynamicIllustration type="objectives" color="#fd643b" height="160px" />
-            <div>
-              <h3 style={{ fontSize: "1.8rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Strategic Constellation</h3>
-              <p style={{ color: "#64748b" }}>Align every action with your vision.</p>
-            </div>
-          </div>
-
-          <div 
-            className="f-card f-card-5"
-            style={{ ...cardStyle, gridArea: "span 1 / span 2" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#1b1cc2")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <DynamicIllustration type="alerts" color="#1b1cc2" height="160px" />
-            <div>
-              <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Smart Pulse</h3>
-              <p style={{ color: "#64748b" }}>Intelligent adaptive notifications.</p>
-            </div>
-          </div>
-
-          <div 
-            className="f-card f-card-6"
-            style={{ ...cardStyle, gridArea: "span 1 / span 1" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#fd643b")}
-            onMouseLeave={handleMouseLeave}
-          >
-            <DynamicIllustration type="global" color="#fd643b" height="160px" />
-            <div>
-              <h3 style={{ fontSize: "1.8rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Global Network</h3>
-              <p style={{ color: "#64748b" }}>Join an elite community worldwide.</p>
-            </div>
-          </div>
-
+          ))}
         </div>
       </div>
 
-      <style>{`
-        .features-grid {
-          display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          grid-auto-rows: minmax(300px, auto);
-          gap: 24px;
-        }
+      <div className="features-progress">
+        <div ref={progressRef} className="features-progress-bar" />
+      </div>
 
-        /* MEDIA QUERY HANYA UNTUK MOBILE/TABLET */
-        @media (max-width: 992px) {
-          .features-grid { 
-            grid-template-columns: repeat(2, 1fr); 
+      <style>{`
+        .features-section {
+          position: relative;
+          padding: 120px 24px;
+          overflow: hidden;
+        }
+        .features-head {
+          max-width: 1200px;
+          margin: 0 auto 56px;
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-end;
+          gap: 32px;
+          flex-wrap: wrap;
+        }
+        .features-intro {
+          max-width: 340px;
+        }
+        .features-viewport {
+          max-width: 1200px;
+          margin: 0 auto;
+        }
+        .features-track {
+          display: grid;
+          grid-template-columns: repeat(2, 1fr);
+          gap: 20px;
+        }
+        .f-card {
+          background: #ffffff;
+          padding: 32px;
+          border-radius: 32px;
+          border: 1px solid #f1f5f9;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          position: relative;
+          overflow: hidden;
+        }
+        .features-progress { display: none; }
+
+        @media (min-width: 993px) {
+          .features-section {
+            height: 100vh;
+            padding: clamp(96px, 14vh, 140px) 0 48px;
+            display: flex;
+            flex-direction: column;
           }
-          .f-card { 
-            grid-area: auto !important; 
-            padding: 30px !important;
+          .features-head {
+            width: 100%;
+            padding: 0 24px;
+            margin-bottom: clamp(24px, 4vh, 48px);
           }
-          .f-card-1 { grid-column: span 2; }
-          .f-card-5 { grid-column: span 2; }
+          .features-viewport {
+            max-width: none;
+            margin: 0;
+            width: 100%;
+            flex: 1;
+            min-height: 0;
+            padding-left: max(24px, calc((100vw - 1200px) / 2 + 24px));
+          }
+          .features-track {
+            display: flex;
+            gap: 24px;
+            height: 100%;
+            width: max-content;
+            padding-right: max(24px, calc((100vw - 1200px) / 2 + 24px));
+          }
+          .f-card {
+            width: clamp(340px, 30vw, 440px);
+            height: 100%;
+            padding: 36px;
+          }
+          .features-progress {
+            display: block;
+            max-width: 1152px;
+            width: calc(100% - 48px);
+            margin: 32px auto 0;
+            height: 2px;
+            background: #e2e8f0;
+            border-radius: 2px;
+            overflow: hidden;
+          }
+          .features-progress-bar {
+            height: 100%;
+            background: #1b1cc2;
+            transform-origin: left;
+            transform: scaleX(0);
+          }
         }
 
         @media (max-width: 640px) {
-          .features-grid { 
-            grid-template-columns: 1fr; 
-          }
-          .f-card-1, .f-card-5 { grid-column: span 1; }
+          .features-section { padding: 80px 16px; }
+          .features-track { grid-template-columns: 1fr; }
+          .f-card { padding: 24px; }
         }
       `}</style>
     </section>
