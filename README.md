@@ -44,20 +44,6 @@ Scroll through a single page (`/`) composed of:
 - **Performance minded**: below the fold sections lazy loaded with `next/dynamic`, optimized images via `next/image`
 - **Keyboard & ARIA support**: tab lists, accordions, and focus visible states
 
-## Getting Started
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) to view the page.
-
 ## Available Scripts
 
 | Script | Description |
@@ -67,6 +53,8 @@ Open [http://localhost:3000](http://localhost:3000) to view the page.
 | `npm run build` | Production build |
 | `npm run start` | Serve the production build |
 | `npm run lint` | Run ESLint |
+
+Open [http://localhost:3000](http://localhost:3000) to view the page.
 
 ## Project Structure
 
