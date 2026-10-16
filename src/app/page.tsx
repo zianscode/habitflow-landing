@@ -1,17 +1,19 @@
+import dynamic from "next/dynamic";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
-import TrustBar from "./components/TrustBar";
-import Features from "./components/Features";
-import ProductPreview from "./components/ProductPreview";
-import WhyUs from "./components/WhyUs";
-import HowItWorks from "./components/HowItWorks";
-import Testimonials from "./components/Testimonials";
-import Pricing from "./components/Pricing";
-import Integrations from "./components/Integrations";
-import FAQ from "./components/FAQ";
-import FinalCTA from "./components/FinalCTA";
-import Footer from "./components/Footer";
 import ScrollReveal from "./components/ScrollReveal";
+
+const TrustBar = dynamic(() => import("./components/TrustBar"));
+const Features = dynamic(() => import("./components/Features"));
+const ProductPreview = dynamic(() => import("./components/ProductPreview"));
+const WhyUs = dynamic(() => import("./components/WhyUs"));
+const HowItWorks = dynamic(() => import("./components/HowItWorks"));
+const Testimonials = dynamic(() => import("./components/Testimonials"));
+const Pricing = dynamic(() => import("./components/Pricing"));
+const Integrations = dynamic(() => import("./components/Integrations"));
+const FAQ = dynamic(() => import("./components/FAQ"));
+const FinalCTA = dynamic(() => import("./components/FinalCTA"));
+const Footer = dynamic(() => import("./components/Footer"));
 
 export default function LandingPage() {
   return (

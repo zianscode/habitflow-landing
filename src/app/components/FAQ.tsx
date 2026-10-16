@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const faqs = [
   { question: "Is HabitFlow really free to start?", answer: "Yes! Our Free plan includes up to 5 habits, streak tracking, and daily reminders — completely free, forever. No credit card required to sign up." },
@@ -16,8 +15,6 @@ export default function FAQ() {
   const itemsRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
     const items = itemsRef.current?.children;
     if (items) {
       gsap.fromTo(items, 
@@ -49,7 +46,7 @@ export default function FAQ() {
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <div style={{ textAlign: "center", marginBottom: 60 }}>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.03em" }}>
-            Commonly Asked <span style={{ color: "#4f46e5" }}>Questions</span>
+            Commonly Asked <span style={{ color: "#1b1cc2" }}>Questions</span>
           </h2>
         </div>
 
@@ -82,8 +79,8 @@ export default function FAQ() {
                     gap: 20,
                   }}
                 >
-                  <span style={{ fontWeight: 600, fontSize: "1.05rem", color: isOpen ? "#4f46e5" : "#0f172a" }}>{faq.question}</span>
-                  <div style={{ width: 32, height: 32, borderRadius: "100px", background: isOpen ? "#4f46e5" : "#f1f5f9", color: isOpen ? "white" : "#64748b", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.3s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
+                  <span style={{ fontWeight: 600, fontSize: "1.05rem", color: isOpen ? "#fd643b" : "#0f172a" }}>{faq.question}</span>
+                  <div style={{ width: 32, height: 32, borderRadius: "100px", background: isOpen ? "#fd643b" : "#f1f5f9", color: isOpen ? "white" : "#64748b", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, transition: "all 0.3s ease", transform: isOpen ? "rotate(180deg)" : "rotate(0deg)" }}>
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"><polyline points="6 9 12 15 18 9" /></svg>
                   </div>
                 </button>

@@ -1,29 +1,28 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const steps = [
   {
     id: "01",
     title: "Architect Your Habits",
     desc: "Design custom routines engineered for your specific life objectives. Build the foundation of your success.",
-    color: "#4f46e5",
-    lightColor: "#4f46e515",
+    color: "#1b1cc2",
+    lightColor: "#1b1cc215",
   },
   {
     id: "02",
     title: "Precision Execution",
     desc: "Log your progress with high-fidelity interactions. Every action is a vote for the person you want to become.",
-    color: "#10b981",
-    lightColor: "#10b98115",
+    color: "#fd643b",
+    lightColor: "#fd643b15",
   },
   {
     id: "03",
     title: "Master Your Future",
     desc: "Review deep analytics and sustain your peak performance. Turn consistency into permanent excellence.",
-    color: "#f59e0b",
-    lightColor: "#f59e0b15",
+    color: "#1b1cc2",
+    lightColor: "#1b1cc215",
   },
 ];
 
@@ -32,8 +31,6 @@ export default function HowItWorks() {
   const lineRef = useRef<SVGPathElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     if (lineRef.current) {
       const pathLength = lineRef.current.getTotalLength();
       
@@ -82,7 +79,7 @@ export default function HowItWorks() {
       <div style={{ maxWidth: 1200, margin: "0 auto", textAlign: "center" }}>
         <div style={{ marginBottom: 100 }}>
           <span style={{ 
-            color: "#4f46e5", 
+            color: "#0f172a", 
             fontWeight: 600, 
             fontSize: "0.9rem", 
             textTransform: "uppercase", 
@@ -99,7 +96,7 @@ export default function HowItWorks() {
             letterSpacing: "-0.04em",
             lineHeight: 1.1
           }}>
-            From Ambition to <span style={{ color: "#4f46e5" }}>Automated.</span>
+            From Ambition to <span style={{ color: "#1b1cc2" }}>Automated.</span>
           </h2>
         </div>
 
@@ -127,9 +124,9 @@ export default function HowItWorks() {
             />
             <defs>
               <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#4f46e5" />
-                <stop offset="50%" stopColor="#10b981" />
-                <stop offset="100%" stopColor="#f59e0b" />
+                <stop offset="0%" stopColor="#1b1cc2" />
+                <stop offset="50%" stopColor="#1b1cc2" />
+                <stop offset="100%" stopColor="#fd643b" />
               </linearGradient>
             </defs>
           </svg>
@@ -160,7 +157,7 @@ export default function HowItWorks() {
                     fontSize: "12rem", 
                     fontWeight: 800, 
                     color: "transparent",
-                    WebkitTextStroke: "1px rgba(15, 23, 42, 0.03)",
+                    WebkitTextStroke: "1px rgba(27, 28, 194, 0.03)",
                     zIndex: -1,
                     pointerEvents: "none",
                     userSelect: "none"

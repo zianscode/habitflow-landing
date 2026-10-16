@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const plans = [
   { name: "Standard", monthlyPrice: 0, yearlyPrice: 0, description: "Precision tracking for individuals.", features: ["5 Active Habits", "Streak Methodology", "7-Day Archive", "Smart Alerts"], highlight: false, speed: 0.8 },
@@ -15,8 +14,6 @@ export default function Pricing() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const cards = gridRef.current?.children;
     if (cards) {
       Array.from(cards).forEach((card, i) => {
@@ -49,13 +46,13 @@ export default function Pricing() {
         <div style={{ textAlign: "left", marginBottom: 100, display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: "40px" }}>
           <div>
             <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.2rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.04em", lineHeight: 1.1 }}>
-              Invest in Your <br /><span style={{ color: "#4f46e5" }}>Potential.</span>
+              Invest in Your <br /><span style={{ color: "#1b1cc2" }}>Potential.</span>
             </h2>
           </div>
           
           <div style={{ display: "inline-flex", alignItems: "center", gap: 12, background: "#f1f5f9", padding: "6px", borderRadius: "100px", marginBottom: "10px" }}>
-            <button onClick={() => setYearly(false)} style={{ padding: "12px 32px", borderRadius: "100px", border: "none", cursor: "pointer", fontWeight: 600, background: !yearly ? "#0f172a" : "transparent", color: !yearly ? "white" : "#64748b", transition: "all 0.3s ease" }}>Monthly</button>
-            <button onClick={() => setYearly(true)} style={{ padding: "12px 32px", borderRadius: "100px", border: "none", cursor: "pointer", fontWeight: 600, background: yearly ? "#0f172a" : "transparent", color: yearly ? "white" : "#64748b", transition: "all 0.3s ease" }}>Yearly</button>
+            <button onClick={() => setYearly(false)} style={{ padding: "12px 32px", borderRadius: "100px", border: "none", cursor: "pointer", fontWeight: 600, background: !yearly ? "#1b1cc2" : "transparent", color: !yearly ? "white" : "#64748b", transition: "all 0.3s ease" }}>Monthly</button>
+            <button onClick={() => setYearly(true)} style={{ padding: "12px 32px", borderRadius: "100px", border: "none", cursor: "pointer", fontWeight: 600, background: yearly ? "#1b1cc2" : "transparent", color: yearly ? "white" : "#64748b", transition: "all 0.3s ease" }}>Yearly</button>
           </div>
         </div>
 
@@ -74,10 +71,10 @@ export default function Pricing() {
               style={{
                 padding: "60px 40px",
                 borderRadius: "40px",
-                background: plan.highlight ? "#0f172a" : "#ffffff",
-                color: plan.highlight ? "white" : "#0f172a",
+                background: plan.highlight ? "#1b1cc2" : "#ffffff",
+                color: plan.highlight ? "white" : "#1b1cc2",
                 border: "1px solid #f1f5f9",
-                boxShadow: plan.highlight ? "0 40px 80px rgba(15, 23, 42, 0.15)" : "0 20px 40px rgba(0,0,0,0.02)",
+                boxShadow: plan.highlight ? "0 40px 80px rgba(27, 28, 194, 0.15)" : "0 20px 40px rgba(0,0,0,0.02)",
                 display: "flex",
                 flexDirection: "column",
                 transition: "all 0.4s ease",
@@ -98,7 +95,7 @@ export default function Pricing() {
               <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: 20, marginBottom: 56, flex: 1 }}>
                 {plan.features.map(f => (
                   <li key={f} style={{ display: "flex", alignItems: "center", gap: 14, fontWeight: 500 }}>
-                    <div style={{ width: 20, height: 20, borderRadius: "100px", background: plan.highlight ? "#4f46e5" : "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                    <div style={{ width: 20, height: 20, borderRadius: "100px", background: plan.highlight ? "#fd643b" : "#f1f5f9", display: "flex", alignItems: "center", justifyContent: "center" }}>
                       <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 6 9 17 4 12" /></svg>
                     </div>
                     {f}
@@ -113,7 +110,7 @@ export default function Pricing() {
                   textAlign: "center",
                   padding: "18px",
                   borderRadius: "100px",
-                  background: plan.highlight ? "#4f46e5" : "#0f172a",
+                  background: plan.highlight ? "#fd643b" : "#1b1cc2",
                   color: "white",
                   fontWeight: 600,
                   textDecoration: "none",

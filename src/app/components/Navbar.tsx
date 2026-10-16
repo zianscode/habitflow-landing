@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import Magnetic from "./Magnetic";
+import logoIcon from "../../../public/images/icon.png";
 
 const navLinks = ["Home", "Features", "Pricing", "Testimonials", "FAQ"];
 
@@ -107,21 +108,23 @@ export default function Navbar() {
             flexShrink: 0,
           }}
         >
-          <div style={{ position: "relative", width: 30, height: 30 }}>
+          <div style={{ position: "relative", width: 48, height: 48 }}>
             <Image
-              src="/images/icon.png"
+              src={logoIcon}
               alt="HabitFlow"
-              width={30}
-              height={30}
+              fill
+              sizes="48px"
+              style={{ objectFit: "contain" }}
               priority
             />
           </div>
           <span
             style={{
-              fontSize: "1.1rem",
-              fontWeight: 700,
-              color: "#0f172a",
-              letterSpacing: "-0.02em",
+              fontFamily: "var(--font-brand)",
+              fontSize: "1.3rem",
+              fontWeight: 600,
+              color: "#1b1cc2",
+              letterSpacing: "-0.03em",
             }}
           >
             HabitFlow
@@ -161,7 +164,7 @@ export default function Navbar() {
               style={{
                 display: "inline-block",
                 padding: isScrolled ? "12px 24px" : "14px 35px",
-                background: "#0f172a",
+                background: "#1b1cc2",
                 color: "white",
                 borderRadius: "100px",
                 fontSize: "0.85rem",
@@ -201,7 +204,7 @@ export default function Navbar() {
               style={{
                 width: "24px",
                 height: "2px",
-                background: "#0f172a",
+                background: "#1b1cc2",
                 transition: "all 0.3s ease",
                 transform: menuOpen
                   ? "rotate(45deg) translate(5px, 5px)"
@@ -212,7 +215,7 @@ export default function Navbar() {
               style={{
                 width: "24px",
                 height: "2px",
-                background: "#0f172a",
+                background: "#1b1cc2",
                 transition: "all 0.3s ease",
                 opacity: menuOpen ? 0 : 1,
               }}
@@ -221,7 +224,7 @@ export default function Navbar() {
               style={{
                 width: "24px",
                 height: "2px",
-                background: "#0f172a",
+                background: "#1b1cc2",
                 transition: "all 0.3s ease",
                 transform: menuOpen
                   ? "rotate(-45deg) translate(5px, -5px)"
@@ -264,7 +267,7 @@ export default function Navbar() {
             style={{
               fontSize: "1.2rem",
               fontWeight: 600,
-              color: "#0f172a",
+              color: "#1b1cc2",
               textDecoration: "none",
             }}
           >
@@ -277,7 +280,7 @@ export default function Navbar() {
           style={{
             marginTop: 10,
             padding: "14px 32px",
-            background: "#0f172a",
+            background: "#1b1cc2",
             color: "white",
             borderRadius: "100px",
             fontSize: "1rem",

@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const DynamicIllustration = ({ 
   type, 
@@ -111,7 +110,6 @@ export default function Features() {
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
     const ctx = gsap.context(() => {
       const cards = gridRef.current?.children;
       if (!cards) return;
@@ -165,7 +163,7 @@ export default function Features() {
     <section id="features" style={{ padding: "160px 24px", background: "#ffffff" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4rem)", fontWeight: 600, color: "#0f172a", marginBottom: 80, letterSpacing: "-0.04em" }}>
-          Mastery Through <span style={{ color: "#4f46e5" }}>Precision.</span>
+          Mastery Through <span style={{ color: "#1b1cc2" }}>Precision.</span>
         </h2>
 
         <div ref={gridRef} className="features-grid">
@@ -173,10 +171,10 @@ export default function Features() {
           <div 
             className="f-card f-card-1"
             style={{ ...cardStyle, gridArea: "span 1 / span 2" }} 
-            onMouseEnter={(e) => handleMouseEnter(e, "#f59e0b")}
+            onMouseEnter={(e) => handleMouseEnter(e, "#1b1cc2")}
             onMouseLeave={handleMouseLeave}
           >
-            <DynamicIllustration type="momentum" color="#f59e0b" height="300px" />
+            <DynamicIllustration type="momentum" color="#1b1cc2" height="300px" />
             <div>
               <h3 style={{ fontSize: "2rem", fontWeight: 600, color: "#0f172a", marginBottom: 16 }}>Elite Momentum Engine</h3>
               <p style={{ fontSize: "1.1rem", color: "#64748b", lineHeight: 1.7 }}>Forge unbreakable streaks with our precision-engineered momentum engine.</p>
@@ -186,10 +184,10 @@ export default function Features() {
           <div 
             className="f-card f-card-2"
             style={{ ...cardStyle, gridArea: "span 1 / span 1" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#10b981")}
+            onMouseEnter={(e) => handleMouseEnter(e, "#fd643b")}
             onMouseLeave={handleMouseLeave}
           >
-            <DynamicIllustration type="tracking" color="#10b981" height="300px" />
+            <DynamicIllustration type="tracking" color="#fd643b" height="300px" />
             <div>
               <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Radar Precision</h3>
               <p style={{ color: "#64748b" }}>High-fidelity monitoring for every habit.</p>
@@ -199,10 +197,10 @@ export default function Features() {
           <div 
             className="f-card f-card-3"
             style={{ ...cardStyle, gridArea: "span 1 / span 1" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#7c3aed")}
+            onMouseEnter={(e) => handleMouseEnter(e, "#1b1cc2")}
             onMouseLeave={handleMouseLeave}
           >
-            <DynamicIllustration type="analytics" color="#7c3aed" height="160px" />
+            <DynamicIllustration type="analytics" color="#1b1cc2" height="160px" />
             <div>
               <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Peak Analytics</h3>
               <p style={{ color: "#64748b" }}>Visualize patterns and optimize your path.</p>
@@ -212,10 +210,10 @@ export default function Features() {
           <div 
             className="f-card f-card-4"
             style={{ ...cardStyle, gridArea: "span 1 / span 2" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#ef4444")}
+            onMouseEnter={(e) => handleMouseEnter(e, "#fd643b")}
             onMouseLeave={handleMouseLeave}
           >
-            <DynamicIllustration type="objectives" color="#ef4444" height="160px" />
+            <DynamicIllustration type="objectives" color="#fd643b" height="160px" />
             <div>
               <h3 style={{ fontSize: "1.8rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Strategic Constellation</h3>
               <p style={{ color: "#64748b" }}>Align every action with your vision.</p>
@@ -225,10 +223,10 @@ export default function Features() {
           <div 
             className="f-card f-card-5"
             style={{ ...cardStyle, gridArea: "span 1 / span 2" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#3b82f6")}
+            onMouseEnter={(e) => handleMouseEnter(e, "#1b1cc2")}
             onMouseLeave={handleMouseLeave}
           >
-            <DynamicIllustration type="alerts" color="#3b82f6" height="160px" />
+            <DynamicIllustration type="alerts" color="#1b1cc2" height="160px" />
             <div>
               <h3 style={{ fontSize: "1.5rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Smart Pulse</h3>
               <p style={{ color: "#64748b" }}>Intelligent adaptive notifications.</p>
@@ -238,10 +236,10 @@ export default function Features() {
           <div 
             className="f-card f-card-6"
             style={{ ...cardStyle, gridArea: "span 1 / span 1" }}
-            onMouseEnter={(e) => handleMouseEnter(e, "#6366f1")}
+            onMouseEnter={(e) => handleMouseEnter(e, "#fd643b")}
             onMouseLeave={handleMouseLeave}
           >
-            <DynamicIllustration type="global" color="#6366f1" height="160px" />
+            <DynamicIllustration type="global" color="#fd643b" height="160px" />
             <div>
               <h3 style={{ fontSize: "1.8rem", fontWeight: 600, color: "#0f172a", marginBottom: 12 }}>Global Network</h3>
               <p style={{ color: "#64748b" }}>Join an elite community worldwide.</p>

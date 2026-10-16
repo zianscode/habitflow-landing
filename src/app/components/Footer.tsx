@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import logoIcon from "../../../public/images/icon.png";
 
 const footerLinks = {
   Product: ["Features", "Pricing", "Integrations", "Changelog"],
@@ -31,7 +32,7 @@ export default function Footer() {
             <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 32 }}>
               <div style={{ position: "relative", width: 32, height: 32 }}>
                 <Image
-                  src="/images/icon.png"
+                  src={logoIcon}
                   alt="HabitFlow"
                   fill
                   sizes="32px"
@@ -62,7 +63,7 @@ export default function Footer() {
                         fontWeight: 600,
                         transition: "color 0.2s ease",
                       }}
-                      onMouseEnter={(e) => (e.currentTarget.style.color = "#4f46e5")}
+                      onMouseEnter={(e) => (e.currentTarget.style.color = "#1b1cc2")}
                       onMouseLeave={(e) => (e.currentTarget.style.color = "#64748b")}
                     >
                       {link}
@@ -100,7 +101,7 @@ export default function Footer() {
                   fontWeight: 600,
                   transition: "color 0.2s ease",
                 }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#0f172a")}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "#1b1cc2")}
                 onMouseLeave={(e) => (e.currentTarget.style.color = "#94a3b8")}
               >
                 {social}

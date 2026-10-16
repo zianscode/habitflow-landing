@@ -3,6 +3,8 @@ import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 interface ScrollRevealProps {
   children: React.ReactNode;
   delay?: number;
@@ -22,8 +24,6 @@ export default function ScrollReveal({
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const container = containerRef.current;
     const content = contentRef.current;
     if (!container || !content) return;

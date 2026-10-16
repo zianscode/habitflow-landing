@@ -1,15 +1,12 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function WhyUs() {
   const sectionRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     gsap.from(".stat-card", {
       y: 40,
       opacity: 0,
@@ -45,7 +42,7 @@ export default function WhyUs() {
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div style={{ marginBottom: "clamp(60px, 10vw, 100px)" }}>
           <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.2rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.04em", lineHeight: 1.1 }}>
-            Unrivaled Metrics <br /><span style={{ color: "#4f46e5" }}>for Unstoppable Growth.</span>
+            Unrivaled Metrics <br /><span style={{ color: "#1b1cc2" }}>for Unstoppable Growth.</span>
           </h2>
         </div>
 
@@ -62,7 +59,7 @@ export default function WhyUs() {
               border: "1px solid #f1f5f9"
             }}
           >
-            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#10b981" }}>90%</div>
+            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#fd643b" }}>90%</div>
             <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Consistency</div>
           </div>
 
@@ -71,7 +68,7 @@ export default function WhyUs() {
             style={{ 
               ...cardStyle, 
               gridArea: "s2",
-              background: "#0f172a",
+              background: "#1b1cc2",
               color: "white"
             }}
           >
@@ -88,7 +85,7 @@ export default function WhyUs() {
               border: "1px solid #f1f5f9"
             }}
           >
-            <div style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#6366f1" }}>10K+</div>
+            <div style={{ fontSize: "clamp(3.5rem, 6vw, 5rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#1b1cc2" }}>10K+</div>
             <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>Global Achievers</div>
           </div>
 
@@ -101,7 +98,7 @@ export default function WhyUs() {
               border: "1px solid #f1f5f9"
             }}
           >
-            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#ec4899" }}>4.9★</div>
+            <div style={{ fontSize: "clamp(4rem, 8vw, 6rem)", fontWeight: 700, lineHeight: 1, marginBottom: 16, color: "#fd643b" }}>4.9★</div>
             <div style={{ fontSize: "0.85rem", color: "#64748b", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.2em" }}>User Rating</div>
           </div>
         </div>

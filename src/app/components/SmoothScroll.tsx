@@ -4,6 +4,8 @@ import Lenis from "lenis";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+gsap.registerPlugin(ScrollTrigger);
+
 export default function SmoothScroll({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
@@ -59,7 +61,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             left: "5%", 
             width: "40vw",  
             height: "40vw", 
-            background: "radial-gradient(circle, rgba(79, 70, 229, 0.08) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(27, 28, 194, 0.08) 0%, transparent 70%)",
             filter: "blur(80px)",
             borderRadius: "50%"
           }} 
@@ -73,7 +75,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             right: "-10%", 
             width: "50vw", 
             height: "50vw", 
-            background: "radial-gradient(circle, rgba(16, 185, 129, 0.05) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(253, 100, 59, 0.05) 0%, transparent 70%)",
             filter: "blur(100px)",
             borderRadius: "50%"
           }} 
@@ -87,7 +89,7 @@ export default function SmoothScroll({ children }: { children: React.ReactNode }
             left: "20%", 
             width: "45vw", 
             height: "45vw", 
-            background: "radial-gradient(circle, rgba(245, 158, 11, 0.06) 0%, transparent 70%)",
+            background: "radial-gradient(circle, rgba(253, 100, 59, 0.06) 0%, transparent 70%)",
             filter: "blur(90px)",
             borderRadius: "50%"
           }} 

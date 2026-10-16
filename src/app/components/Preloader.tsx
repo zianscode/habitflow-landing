@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import gsap from "gsap";
 import Image from "next/image";
+import logoIcon from "../../../public/images/icon.png";
 
 export default function Preloader() {
   const [loading, setLoading] = useState(true);
@@ -47,8 +48,8 @@ export default function Preloader() {
   return (
     <div ref={containerRef} style={{ position: "fixed", inset: 0, zIndex: 9999, pointerEvents: "none" }}>
 
-      <div className="preloader-bg-layer" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "#0f172a", zIndex: 1 }} />
-      <div className="preloader-bg-layer" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "#4f46e5", zIndex: 0 }} />
+      <div className="preloader-bg-layer" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "#fd643b", zIndex: 1 }} />
+      <div className="preloader-bg-layer" style={{ position: "absolute", top: 0, left: 0, width: "100%", height: "100%", background: "#1b1cc2", zIndex: 0 }} />
 
       <div 
         ref={contentRef}
@@ -65,7 +66,7 @@ export default function Preloader() {
       >
         <div style={{ position: "relative", width: "80px", height: "80px", marginBottom: "24px" }}>
           <Image
-            src="/images/icon.png"
+            src={logoIcon}
             alt="Logo"
             fill
             sizes="80px"

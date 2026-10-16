@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Image from "next/image";
 
 const testimonials = [
@@ -29,8 +28,6 @@ export default function Testimonials() {
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-
     const ctx = gsap.context(() => {
 
       gsap.from(".testimonial-card", {
@@ -102,14 +99,14 @@ export default function Testimonials() {
         transform: "translate(-50%, -50%)", 
         width: "800px", 
         height: "800px", 
-        background: "radial-gradient(circle, rgba(79,70,229,0.02) 0%, transparent 70%)", 
+        background: "radial-gradient(circle, rgba(27, 28, 194,0.02) 0%, transparent 70%)", 
         zIndex: 0 
       }} />
 
       <div style={{ maxWidth: 1200, margin: "0 auto", position: "relative", zIndex: 1 }}>
         <div style={{ textAlign: "center", marginBottom: 100 }}>
           <h2 style={{ fontSize: "clamp(2.5rem, 6vw, 4.2rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.04em" }}>
-            The Global Standard for <span style={{ color: "#4f46e5" }}>Achievers.</span>
+            The Global Standard for <span style={{ color: "#1b1cc2" }}>Achievers.</span>
           </h2>
           <p style={{ fontSize: "1.1rem", color: "#64748b" }}>Discover how professionals are architecting their success.</p>
         </div>
@@ -140,7 +137,7 @@ export default function Testimonials() {
               }}
             >
               <div style={{ marginBottom: "40px" }}>
-                <div style={{ color: "#4f46e5", fontSize: "3rem", lineHeight: 1, marginBottom: 20, opacity: 0.2 }}>“</div>
+                <div style={{ color: "#0f172a", fontSize: "3rem", lineHeight: 1, marginBottom: 20, opacity: 0.2 }}>“</div>
                 <p style={{ fontSize: "1.25rem", color: "#0f172a", fontWeight: 500, lineHeight: 1.6, fontStyle: "italic" }}>
                   {t.quote}
                 </p>

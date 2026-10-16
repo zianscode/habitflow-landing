@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 export default function ProductPreview() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -9,8 +8,6 @@ export default function ProductPreview() {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
     gsap.fromTo(contentRef.current, 
       { x: -50, opacity: 0 },
       {
@@ -60,7 +57,7 @@ export default function ProductPreview() {
       >
         <div ref={contentRef}>
           <h2 style={{ fontSize: "clamp(1.8rem, 4vw, 2.8rem)", fontWeight: 600, color: "#0f172a", marginBottom: 24, letterSpacing: "-0.03em" }}>
-            Precision Analytics for <br /><span style={{ color: "#4f46e5" }}>Serious Growth</span>
+            Precision Analytics for <br /><span style={{ color: "#1b1cc2" }}>Serious Growth</span>
           </h2>
           <p style={{ fontSize: "1.1rem", color: "#64748b", lineHeight: 1.6, marginBottom: 40, fontWeight: 500 }}>
             Our dashboard provides an unrivaled level of detail into your behavioral patterns.
@@ -79,13 +76,13 @@ export default function ProductPreview() {
         </div>
 
         <div ref={mockupRef} style={{ position: "relative" }}>
-          <div style={{ position: "absolute", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(79,70,229,0.06) 0%, transparent 70%)", top: "-10%", left: "-10%", zIndex: 0 }} />
+          <div style={{ position: "absolute", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(27, 28, 194,0.06) 0%, transparent 70%)", top: "-10%", left: "-10%", zIndex: 0 }} />
           
           <div style={{ position: "relative", zIndex: 1, borderRadius: "32px", overflow: "hidden", boxShadow: "0 40px 100px rgba(0,0,0,0.12)", border: "1px solid rgba(0,0,0,0.05)", background: "white" }}>
-            <div style={{ background: "#0f172a", padding: "16px 24px", display: "flex", gap: 10 }}>
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#ef4444" }} />
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#f59e0b" }} />
-              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#10b981" }} />
+            <div style={{ background: "#1b1cc2", padding: "16px 24px", display: "flex", gap: 10 }}>
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#fd643b" }} />
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#fd643b" }} />
+              <div style={{ width: 8, height: 8, borderRadius: "50%", background: "#fd643b" }} />
             </div>
             <div style={{ padding: "40px" }}>
               <div style={{ height: 10, width: "40%", background: "#f1f5f9", borderRadius: "100px", marginBottom: 24 }} />

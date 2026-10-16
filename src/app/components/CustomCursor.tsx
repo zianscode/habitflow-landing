@@ -56,7 +56,7 @@ export default function CustomCursor() {
     const onMouseEnter = () => {
       gsap.to(follower, {
         scale: 2.5,
-        backgroundColor: "rgba(79, 70, 229, 0.12)",
+        backgroundColor: "rgba(27, 28, 194, 0.12)",
         borderColor: "transparent",
         duration: 0.3
       });
@@ -67,7 +67,7 @@ export default function CustomCursor() {
       gsap.to(follower, {
         scale: 1,
         backgroundColor: "transparent",
-        borderColor: "rgba(15, 23, 42, 0.2)",
+        borderColor: "rgba(27, 28, 194, 0.2)",
         duration: 0.3
       });
       gsap.to(cursor, { opacity: 1, duration: 0.2 });
@@ -107,7 +107,7 @@ export default function CustomCursor() {
           left: 0, 
           width: "8px", 
           height: "8px", 
-          background: "#0f172a", 
+          background: "#1b1cc2", 
           borderRadius: "50%", 
           zIndex: 10000, 
           pointerEvents: "none",
@@ -123,7 +123,7 @@ export default function CustomCursor() {
           left: 0, 
           width: "40px", 
           height: "40px", 
-          border: "1px solid rgba(15, 23, 42, 0.2)", 
+          border: "1px solid rgba(27, 28, 194, 0.2)", 
           borderRadius: "50%", 
           zIndex: 9999, 
           pointerEvents: "none",

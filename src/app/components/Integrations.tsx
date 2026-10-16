@@ -2,7 +2,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const initialIntegrations = [
   { name: "Google Calendar", logo: "https://cdn.worldvectorlogo.com/logos/google-calendar-6.svg" },
@@ -25,8 +24,6 @@ export default function Integrations() {
   };
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
-    
     const items = itemsRef.current?.children;
     if (items) {
       gsap.fromTo(items, 
